@@ -62,13 +62,23 @@ void SCSCL::SyncWritePos(u8 ID[], u8 IDN, u16 Position[], u16 Time[], u16 Speed[
     syncWrite(ID, IDN, SCSCL_GOAL_POSITION_L, offbuf, 6);
 }
 
-int SCSCL::PWMMode(u8 ID)
+int SCSCL::PWMMode(u8 ID, bool mode)
 {
-	u8 bBuf[4];
-	bBuf[0] = 0;
-	bBuf[1] = 0;
-	bBuf[2] = 0;
-	bBuf[3] = 0;
+	if (mode) {
+		// rotation
+		u8 bBuf[4];
+		bBuf[0] = 0;
+		bBuf[1] = 0;
+		bBuf[2] = 0;
+		bBuf[3] = 0;
+	} else {
+		// normal
+		u8 bBuf[4];
+		bBuf[0] = 0;
+		bBuf[1] = 0x14;
+		bBuf[2] = 0x03;
+		bBuf[3] = 0xff;
+	}
 	return genWrite(ID, SCSCL_MIN_ANGLE_LIMIT_L, bBuf, 4);	
 }
 
