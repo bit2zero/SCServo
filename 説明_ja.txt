@@ -1,0 +1,51 @@
+通信レイヤ:SCS
+----------------------------
+ハードウェアインタフェース層：SCSerial
+----------------------------
+アプリケーション層：SMSBL SMSCL SCSCLはFlytecの3シリーズのサーボに対応しています。
+
+
+
+SMSBL sm;//SMSBLシリーズサーボの定義
+SMSCL sm;//SMSCLシリーズのサーボを定義する。
+SCSCL sc;//SCSCLシリーズサーボの定義
+SMSCL sm;//define SMSBL sc;//define SCSCL series servos.
+
+
+
+INST.h---命令定義ヘッダファイル
+SCS.h/SCS.cpp---通信層プログラム
+SCSerial.h/SCSerial.cpp---ハードウェア・インターフェース手続き
+SMSBL.h/SMSBL.cpp--SMSBLアプリケーション層プログラム
+SMSCL.h/SMSCL.cpp---SMSCLアプリケーション層プロシージャ
+SCSCL.h/SCSCL.cpp・・・SCSCLアプリケーション層プロシージャ
+(アプリケーション層プログラムのヘッダファイルSMSBL.hSMSCL.hの中で、ラダーメモリテーブルの定義が異なります。）
+
+
+                       SMSBLクラス
+SCS クラス <---SCSerial クラス <---SMSCL クラス
+                       SCSCL クラス
+
+SCServoArduinoLib_190801.7z.
+(リリースノートなし）
+
+SCServoArduinoLib_180813 アップデートノート：
+I.SMSLibの修正
+ResetをRecoveryに変更。
+2、WriteMaxDiff関数とReadMaxDiff関数を削除。
+3、すべてのread関数をint型を返すように修正。
+サンプルコードの修正
+1、元の多点位置ループから2点位置ループにブロードキャスト。
+2、SMCLとSCCLの書き込みコマンド/非同期書き込みコマンド/同期書き込みコマンドの時間パラメータを速度パラメータに変更。
+3、SMCLとSCCLの実行時間は、規制、速度、負荷応答遅延の蓄積を増加させる。
+4、コメントを修正
+
+SCServoArduinoLib_180912.7z
+PING命令のバグを修復。
+Pingの例を追加
+
+SCServoArduinoLib_181021.7z
+SyncWritePos2 同期書き込み命令を追加し、各サーボ位置を個別に設定できるようにした。
+
+SCServoArduinoLib_181209.7z
+同期書き込み命令SyncWritePos2のエラー修正
